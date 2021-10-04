@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/samplesite" mode="merge"/>
+    <filter root="/content/samplesite" mode="merge"/>
+    <filter root="/content/dam/samplesite" mode="merge"/>
+    <filter root="/content/experience-fragments/samplesite" mode="merge"/>
+    <filter root="/conf/global/settings/workflow/models/custom-scheduled-workflow"/>
+    <filter root="/var/workflow/models/custom-scheduled-workflow"/>
+    <filter root="/etc/custom-replication-paths" mode="merge"/>
+</workspaceFilter>

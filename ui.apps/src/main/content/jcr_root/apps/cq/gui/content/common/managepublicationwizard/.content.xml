@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="AEM Sites | Manage Publication"
+    sling:resourceType="granite/ui/components/coral/foundation/page"
+    consoleId="cq-sites-pages-managepublication">
+    <workflowsresourceconfig
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="cq/gui/components/common/admin/managepublication/workflowsconfig"/>
+    <referencesdialog
+        granite:class="cq-common-publish-references-dialog"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Published References"
+        sling:resourceType="cq/gui/components/common/admin/managepublication/referencesdialog">
+        <items jcr:primaryType="nt:unstructured">
+            <form
+                granite:id="cq-common-publish-references-form"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form"
+                style="vertical">
+                <items jcr:primaryType="nt:unstructured">
+                    <pathHidden
+                        granite:id="resourcePath"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                        value="${empty requestPathInfo.suffix ? param.item : requestPathInfo.suffix}"/>
+                    <charset
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                        name="_charset_"
+                        value="utf-8"/>
+                    <references
+                        granite:id="cq-common-publish-references-list"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <references
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/common/admin/managepublication/references"/>
+                        </items>
+                    </references>
+                </items>
+            </form>
+        </items>
+        <footer jcr:primaryType="nt:unstructured">
+            <cancel
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/button"
+                text="Cancel">
+                <parentConfig
+                    jcr:primaryType="nt:unstructured"
+                    close="{Boolean}true"/>
+            </cancel>
+            <add
+                granite:rel="cq-common-publish-references-confirm"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/button"
+                text="Done"
+                variant="primary"/>
+        </footer>
+    </referencesdialog>
+    <head jcr:primaryType="nt:unstructured">
+        <title
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="cq/gui/components/siteadmin/admin/properties/titlehead"
+            baseTitle="AEM Sites | Manage Publication"
+            exclusive="true"
+            pathMultiple="${paramValues.item}"/>
+        <viewport
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/admin/page/viewport"/>
+        <favicon
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/page/favicon"/>
+        <clientlibs
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/includeclientlibs"
+            categories="[coralui3,granite.ui.coral.foundation,cq.common.managepublication]"/>
+    </head>
+    <body
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/page/body">
+        <items jcr:primaryType="nt:unstructured">
+            <form
+                granite:class="cq-sites-managepublication-form"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form"
+                maximized="{Boolean}true"
+                method="post"
+                novalidate="{Boolean}true"
+                style="vertical">
+                <granite:data
+                    jcr:primaryType="nt:unstructured"
+                    errormessage="Cannot start workflow on selected resources."
+                    referencesUrl="/libs/wcm/core/content/reference.json?_charset_=utf-8{&amp;path*}"
+                    replicationUrl="/bin/replicate.json"
+                    requestActivationWorkflow="/etc/workflow/models/request_for_activation/jcr:content/model"
+                    requestDeactivationWorkflow="/etc/workflow/models/request_for_deactivation/jcr:content/model"
+                    scheduleActivationWorkflow="/etc/workflow/models/custom-scheduled-workflow/jcr:content/model"
+                    scheduleDeactivationWorkflow="/etc/workflow/models/scheduled_deactivation/jcr:content/model"
+                    workflowUrl="/etc/workflow/instances"/>
+            </form>
+        </items>
+    </body>
+</jcr:root>

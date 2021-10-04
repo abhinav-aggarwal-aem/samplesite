@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="cq:Page">
+  <jcr:content
+    cq:designPath="/libs/settings/wcm/designs/default"
+    cq:template="/libs/cq/workflow/templates/model"
+    jcr:primaryType="cq:PageContent"
+    jcr:title="Custom Scheduled Workflow"
+    sling:resourceType="cq/workflow/components/pages/model"
+    multiResourceSupport="true">
+    <flow
+      jcr:primaryType="nt:unstructured"
+      sling:resourceType="foundation/components/parsys">
+      <process_copy
+        jcr:description="The Version to be activated/replicated is created"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Create Version"
+        sling:resourceType="cq/workflow/components/model/process">
+        <metaData
+          jcr:primaryType="nt:unstructured"
+          PROCESS="com.day.cq.wcm.workflow.process.CreateVersionProcess"
+          PROCESS_ARGS=""
+          PROCESS_AUTO_ADVANCE="true"/>
+      </process_copy>
+      <process0_copy_1637446448
+        jcr:description="Starts Activate job for the page/asset"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Start Activate Job for Page/Asset"
+        sling:resourceType="cq/workflow/components/model/process">
+        <metaData
+          jcr:primaryType="nt:unstructured"
+          PROCESS="com.samplesite.core.workflow.process.ReplicatePageProcess"
+          PROCESS_AUTO_ADVANCE="true"/>
+      </process0_copy_1637446448>
+    </flow>
+  </jcr:content>
+</jcr:root>
